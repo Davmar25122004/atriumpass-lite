@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orgdb
+      POSTGRES_USER: orguser
+      POSTGRES_PASSWORD: orgpass
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./db/migrations/001_schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+      - ./db/migrations/002_auth.sql:/docker-entrypoint-initdb.d/002_auth.sql:ro
+      - ./db/migrations/003_access_plans.sql:/docker-entrypoint-initdb.d/003_access_plans.sql:ro
+      - ./db/migrations/004_plan_instances.sql:/docker-entrypoint-initdb.d/004_plan_instances.sql:ro
+      - ./db/migrations/005_node_schedules.sql:/docker-entrypoint-initdb.d/005_node_schedules.sql:ro
+      - ./db/migrations/006_plan_node_schedules.sql:/docker-entrypoint-initdb.d/006_plan_node_schedules.sql:ro
+      - ./db/migrations/007_profiles_calendar.sql:/docker-entrypoint-initdb.d/007_profiles_calendar.sql:ro
+      - ./db/migrations/008_person_plan.sql:/docker-entrypoint-initdb.d/008_person_plan.sql:ro
+      - ./db/migrations/009_person_override.sql:/docker-entrypoint-initdb.d/009_person_override.sql:ro
+      - ./db/migrations/010_plan_day_override.sql:/docker-entrypoint-initdb.d/010_plan_day_override.sql:ro
+      - ./db/migrations/011_person_custom_slots.sql:/docker-entrypoint-initdb.d/011_person_custom_slots.sql:ro
+      - ./db/migrations/012_access_methods.sql:/docker-entrypoint-initdb.d/012_access_methods.sql:ro
+      - ./db/migrations/013_week_pattern.sql:/docker-entrypoint-initdb.d/013_week_pattern.sql:ro
+      - ./db/migrations/014_multi_profiles_day.sql:/docker-entrypoint-initdb.d/014_multi_profiles_day.sql:ro
+      - ./db/migrations/015_deny_reason.sql:/docker-entrypoint-initdb.d/015_deny_reason.sql:ro
+      - ./db/seeds/001_seed.sql:/docker-entrypoint-initdb.d/099_seed.sql:ro
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orguser -d orgdb"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://orguser:orgpass@db:5432/orgdb
+      BACKEND_PORT: "3001"
+      JWT_SECRET: atrium-pass-secret-2024
+      FRONTEND_URL: http://localhost:5174
+    ports:
+      - "3002:3001"
+    volumes:
+      - ./backend/src:/app/src
+    depends_on:
+      db: { condition: service_healthy }
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_URL: http://localhost:3001/api
+    ports:
+      - "5175:5174"
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+
+volumes:
+  pg_data:

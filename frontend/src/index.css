@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vp-primary:          #412DB6;
+  --vp-primary-dark:     #2C2554;
+  --vp-primary-light:    #a5b4fc;
+  --vp-primary-lighter:  #e0e7ff;
+  --vp-table-header-bg:  #eef2ff;
+
+  --vp-mod-favoritos:     #412DB6;
+  --vp-mod-presencia:     #FB7185;
+  --vp-mod-config:        #F472B6;
+  --vp-mod-hardware:      #E879F9;
+  --vp-mod-rrhh:          #C084FC;
+  --vp-mod-portal:        #A78BFA;
+  --vp-mod-proyectos:     #38BDF8;
+  --vp-mod-equipamientos: #22D3EE;
+  --vp-mod-flotas:        #2DD4BF;
+  --vp-mod-teletrabajo:   #4ADE80;
+  --vp-mod-encuestas:     #5FC9C9;
+
+  --vp-btn-entrada:      #64BE58;
+  --vp-btn-salida:       #EF703A;
+  --vp-btn-disabled-bg:  #F5F6F8;
+  --vp-btn-disabled-tx:  #475367;
+
+  --vp-status-in-bg:     #DCFCE7;
+  --vp-status-in-text:   #166534;
+  --vp-status-in-border: #00ad54;
+  --vp-status-out-bg:    #FEE2E2;
+  --vp-status-out-text:  #991B1B;
+  --vp-status-out-border:#E05260;
+  --vp-status-inc-bg:    #FEF9C3;
+  --vp-status-inc-text:  #9C5026;
+  --vp-status-inc-border:#dfa10e;
+
+  --vp-gray-50:  #F9FAFB;
+  --vp-gray-100: #F5F5F5;
+  --vp-gray-200: #E4E7EC;
+  --vp-gray-300: #D1D5DB;
+  --vp-gray-400: #cccccc;
+  --vp-gray-500: #9E9E9E;
+  --vp-gray-600: #707070;
+  --vp-gray-700: #475569;
+  --vp-gray-800: #333333;
+  --vp-gray-900: #111827;
+
+  --vp-bg-page:        #F2F2F2;
+  --vp-bg-card:        #FFFFFF;
+  --vp-bg-sidebar:     #FFFFFF;
+  --vp-bg-topbar:      #FFFFFF;
+  --vp-sidebar-active: #CCCCCC;
+  --vp-border-card:    #E4E7EC;
+  --vp-border-topbar:  #D1D5DB;
+  --vp-border-divider: #E2E8F0;
+
+  --vp-font-family:  'DM Sans', system-ui, sans-serif;
+  --vp-text-xs:      12px;
+  --vp-text-sm:      14px;
+  --vp-text-base:    14px;
+  --vp-text-lg:      18px;
+  --vp-text-xl:      20px;
+  --vp-text-2xl:     24px;
+  --vp-text-3xl:     30px;
+  --vp-text-body:    rgb(115, 111, 111);
+  --vp-text-heading: #374151;
+  --vp-text-h3:      #111827;
+  --vp-text-muted:   #707070;
+
+  --vp-radius-sm:    6px;
+  --vp-radius-md:    8px;
+  --vp-radius-lg:    12px;
+  --vp-radius-full:  9999px;
+  --vp-shadow-card:    0 2px 8px rgb(0 0 0 / 0.1);
+  --vp-shadow-submenu: 0 10px 25px rgb(0 0 0 / 0.15);
+
+  --vp-sidebar-width: 224px;
+  --vp-topbar-height: 65px;
+}
+
+:root.dark-mode {
+  --vp-bg-page:        #0F0F12;
+  --vp-bg-card:        #1A1A20;
+  --vp-bg-sidebar:     #1A1A20;
+  --vp-bg-topbar:      #1A1A20;
+  --vp-sidebar-active: rgba(65, 45, 182, 0.35);
+  --vp-border-card:    #2D2D33;
+  --vp-border-topbar:  #2D2D33;
+  --vp-border-divider: #2D2D33;
+  --vp-table-header-bg:#1F1B33;
+  --vp-primary-lighter:rgba(65, 45, 182, 0.30);
+  --vp-gray-50:  #1F1F23;  --vp-gray-100: #27272A;
+  --vp-gray-200: #3F3F46;  --vp-gray-300: #52525B;
+  --vp-gray-400: #71717A;  --vp-gray-500: #A1A1AA;
+  --vp-gray-600: #D4D4D8;  --vp-gray-700: #E4E4E7;
+  --vp-gray-800: #F4F4F5;  --vp-gray-900: #FAFAFA;
+  --vp-text-body:    #D4D4D8;
+  --vp-text-heading: #F4F4F5;
+  --vp-text-h3:      #FAFAFA;
+  --vp-text-muted:   #A1A1AA;
+  --vp-shadow-card:    0 2px 8px rgb(0 0 0 / 0.4);
+  --vp-shadow-submenu: 0 10px 25px rgb(0 0 0 / 0.6);
+}
+
+body {
+  margin: 0;
+  font-family: var(--vp-font-family);
+  font-size: var(--vp-text-base);
+  color: var(--vp-text-body);
+  background: var(--vp-bg-page);
+}
+
+.glass-card {
+  background: var(--vp-bg-card);
+  border: 1px solid var(--vp-border-card);
+  border-radius: var(--vp-radius-md);
+  box-shadow: var(--vp-shadow-card);
+}
+
+.cardWidget {
+  background: var(--vp-bg-card);
+  border: 1px solid var(--vp-border-card);
+  border-radius: var(--vp-radius-md);
+  padding: 0 20px;
+  transition: transform 0.3s ease;
+}
+.cardWidget:hover { transform: scale(1.01); }
+
+.badge-status { border-radius: 100px; padding: 2px 10px; font-size: 12px; font-weight: 500; }
+.badge-status.in { background: var(--vp-status-in-bg); color: var(--vp-status-in-text); border: 1px solid var(--vp-status-in-border); }
+.badge-status.out { background: var(--vp-status-out-bg); color: var(--vp-status-out-text); border: 1px solid var(--vp-status-out-border); }
+.badge-status.inc { background: var(--vp-status-inc-bg); color: var(--vp-status-inc-text); border: 1px solid var(--vp-status-inc-border); }
+
+.vp-tab { flex: 1; padding: 12px 16px; border-bottom: 2px solid transparent; cursor: pointer; text-align: center; }
+.vp-tab.active { color: var(--vp-primary); border-bottom-color: var(--vp-primary); font-weight: 600; }
+
+.vp-widget-grid { display: grid; gap: 16px; }
+@media (min-width: 640px) { .vp-widget-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .vp-widget-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1280px) { .vp-widget-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.relleno0 { background: rgb(28, 130, 173); }
+.relleno1 { background: rgb(64, 196, 196); }
+.relleno2 { background: rgb(3, 201, 136); }
+.relleno3 { background: rgb(128, 70, 116); }
+.relleno4 { background: rgb(217, 119, 6); }
+.relleno5 { background: rgb(220, 38, 38); }
+.relleno6 { background: rgb(99, 102, 241); }
+.relleno7 { background: rgb(236, 72, 153); }
+.relleno8 { background: rgb(14, 165, 233); }
+.relleno9 { background: rgb(132, 204, 22); }
